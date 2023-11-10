@@ -1,4 +1,6 @@
 using Alpata.Case.Infrastructure.Context;
+using Alpata.Case.Services.Mapping;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<AlpataCaseContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("AlpataCaseContext")));
 

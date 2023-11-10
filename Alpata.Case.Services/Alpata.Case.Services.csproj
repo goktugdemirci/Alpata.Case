@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Alpata.Case.Domain.Shared\Alpata.Case.Domain.Shared.csproj" />
-    <ProjectReference Include="..\Alpata.Case.Nuget\Alpata.Case.Nuget.csproj" />
+    <ProjectReference Include="..\Alpata.Case.Domain\Alpata.Case.Domain.csproj" />
+    <ProjectReference Include="..\Alpata.Case.Service.Contracts\Alpata.Case.Service.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
