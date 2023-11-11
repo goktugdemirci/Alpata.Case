@@ -47,7 +47,7 @@
     "karma-jasmine-html-reporter": "^2.0.0",
     "typescript": "~4.9.5"
   },
-  "overrides": {
+  " s": {
     "autoprefixer": "10.4.5",
     "webpack": "5.81.0"
   },

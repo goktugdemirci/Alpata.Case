@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "Alpata.Case.Web"
+  "defaultProject": "Alpata.Case.Web",
+  "cli": {
+    "analytics": false
+  }
 }

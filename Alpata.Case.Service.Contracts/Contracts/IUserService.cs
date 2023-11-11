@@ -1,5 +1,6 @@
 ﻿using Alpata.Case.Service.Contracts.Contracts.Base;
 using Alpata.Case.Service.Contracts.Dtos.User;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace Alpata.Case.Service.Contracts.Contracts
         public Task IsPhoneNumberUniqueAsync(string phoneNumber);
         public Task<UserLoginResultDto> AuthenticateAsync(UserLoginDto userLoginDto);
         public Task<UserDto> GetCurrentUserAsync();
+        public Task UploadProfilePhoto(IFormCollection form);
     }
 }

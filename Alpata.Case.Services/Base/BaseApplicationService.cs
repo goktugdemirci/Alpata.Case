@@ -13,7 +13,7 @@ namespace Alpata.Case.Services.Base
     where TUpdateDto : EntityDto
     {
         protected readonly IRepository<TEntity> _repository;
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
 
         public BaseApplicationService(IRepository<TEntity> repository, IMapper mapper)
         {
@@ -21,19 +21,19 @@ namespace Alpata.Case.Services.Base
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TDto>> GetAllAsync()
+        public virtual async Task<IEnumerable<TDto>> GetAllAsync()
         {
             var entities = await _repository.GetAllAsync();
             return _mapper.Map<IEnumerable<TDto>>(entities);
         }
 
-        public async Task<TDto> GetByIdAsync(Guid id)
+        public virtual async Task<TDto> GetByIdAsync(Guid id)
         {
             var entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<TDto>(entity);
         }
 
-        public async Task<TDto> AddAsync(TCreateDto dto)
+        public virtual async Task<TDto> AddAsync(TCreateDto dto)
         {
             if (dto == null)
             {
@@ -46,7 +46,7 @@ namespace Alpata.Case.Services.Base
             return _mapper.Map<TDto>(entity);
         }
 
-        public async Task UpdateAsync(TUpdateDto dto)
+        public virtual async Task UpdateAsync(TUpdateDto dto)
         {
             if (dto == null)
             {
@@ -57,7 +57,7 @@ namespace Alpata.Case.Services.Base
             await _repository.UpdateAsync(entity);
         }
 
-        public async Task DeleteAsync(TDto dto)
+        public virtual async Task DeleteAsync(TDto dto)
         {
             if (dto == null)
             {
@@ -68,7 +68,7 @@ namespace Alpata.Case.Services.Base
             await _repository.DeleteAsync(entity);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public virtual async Task DeleteAsync(Guid id)
         {
             await _repository.DeleteAsync(id);
         }

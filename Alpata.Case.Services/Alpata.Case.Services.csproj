@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Alpata.Case.Domain\Alpata.Case.Domain.csproj" />
+    <ProjectReference Include="..\Alpata.Case.Infrastructure\Alpata.Case.Infrastructure.csproj" />
     <ProjectReference Include="..\Alpata.Case.Service.Contracts\Alpata.Case.Service.Contracts.csproj" />
   </ItemGroup>
 

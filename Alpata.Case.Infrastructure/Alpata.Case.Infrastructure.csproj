@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Alpata.Case.Domain\Alpata.Case.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

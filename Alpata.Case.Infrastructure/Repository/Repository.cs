@@ -18,12 +18,13 @@ namespace Alpata.Case.Infrastructure.Repository
 
         public virtual Task<List<T>> GetAllAsync()
         {
-            return _dbSet.ToListAsync();
+            return _dbSet.AsNoTracking().ToListAsync();
         }
 
         public virtual Task<T> GetByIdAsync(Guid id)
         {
-            return _dbSet.FirstOrDefaultAsync(x => x.Id==id);
+
+            return _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id==id);
         }
 
         public virtual async Task<T> AddAsync(T entity)
