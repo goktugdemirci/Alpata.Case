@@ -2,6 +2,7 @@
 using Alpata.Case.Service.Contracts.Dtos.Meeting;
 using Alpata.Case.Service.Contracts.Dtos.User;
 using Alpata.Case.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Alpata.Case.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MeetingsController : ControllerBase
     {
         private readonly IMeetingService _meetingsService;

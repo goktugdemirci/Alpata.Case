@@ -1,0 +1,74 @@
+<form name="form" #f="ngForm" novalidate>
+    <div class="card p-fluid">
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <label htmlFor="name">Name</label>
+                <input pInputText [(ngModel)]="this.model.name" name="name" type="text" #name="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+                <div *ngIf="name.invalid" class="invalid-feedback">
+                    <span *ngIf="name.errors">Name is required</span>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <label htmlFor="surname">Surname</label>
+                <input pInputText [(ngModel)]="this.model.surname" name="surname" type="text" #surname="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && surname.invalid }" required />
+                <div *ngIf="surname.invalid" class="invalid-feedback">
+                    <span *ngIf="surname.errors">Surname is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <label htmlFor="email">E-Mail Address</label>
+                <div class="p-inputgroup">
+                    <input pInputText [(ngModel)]="this.model.email" name="email" type="email" #email="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" (blur)='isUniqueEmail(this.model.email)' />
+                    <span class="p-inputgroup-addon"><i class="pi pi-check" *ngIf="isEmailValid"></i><i
+                            class="pi pi-times" *ngIf="!isEmailValid"></i></span>
+                </div>
+                <div *ngIf="email.invalid" class="invalid-feedback">
+                    <span *ngIf="email.errors">E-Mail Address is required</span>
+                </div>
+                <div *ngIf="!isEmailValid && this.model.email" class="invalid-feedback">
+                    <span>Email is already existing</span>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <p-inputMask name="phoneNumber" mask="(999) 999-9999" [(ngModel)]="this.model.phoneNumber"
+                    [ngClass]="{ 'is-invalid': f.submitted && phoneNumber.invalid }" placeholder="(999) 999-9999"
+                    #phoneNumber="ngModel" (onBlur)='isUniquePhoneNumber(this.model.phoneNumber)'></p-inputMask>
+                <div *ngIf="phoneNumber.invalid" class="invalid-feedback">
+                    <span *ngIf="phoneNumber.errors">Phone Number is required</span>
+                </div>
+                <div *ngIf="!isPhoneNumberValid && this.model.phoneNumber" class="invalid-feedback">
+                    <span>Phone Number is already existing</span>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <label htmlFor="password">Password</label>
+                <input pInputText [(ngModel)]="this.model.password" name="password" type="password" #password="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+                <div *ngIf="password.invalid" class="invalid-feedback">
+                    <span *ngIf="password.errors">Password is required</span>
+                </div>
+            </div>
+            <div class="col-12 md:col-3">
+                <label htmlFor="password">Profile Picture</label>
+
+                <p-fileUpload #profilePictureUpload mode="basic" chooseLabel="Choose" name="profilePicture[]" [customUpload]="true" accept="image/*"
+                    [maxFileSize]="1000000"></p-fileUpload>
+            </div>
+            <div class="col-12 md:col-3">
+                <button icon="pi pi-check" (click)="save()" [disabled]="!f.form.valid" label="Save"
+                    class="p-button-success" pButton></button>
+            </div>
+        </div>
+
+    </div>
+</form>
+<p-toast position="top-center"></p-toast>

@@ -1,0 +1,46 @@
+<div class="layout-topbar">
+    <div class="topbar-left">
+        <a #menubutton tabindex="0" class="menu-button p-trigger" (click)="onMenuButtonClick()">
+            <i class="pi pi-chevron-left"></i>
+        </a>
+        <img class="horizontal-logo" [routerLink]="['/']" [src]="'assets/layout/images/logo-'+ logo + '.svg'"
+            alt="diamond-layout" />
+        <span class="topbar-separator"></span>
+        <app-breadcrumb></app-breadcrumb>
+        <img class="mobile-logo" [src]="'assets/layout/images/logo-'+ logo + '.svg'" alt="diamond-layout" />
+    </div>
+
+    <app-sidebar></app-sidebar>
+    <div class="layout-mask modal-in"></div>
+
+    <div class="topbar-right">
+        <ul class="topbar-menu">
+            <li class="profile-item static sm:relative">
+                <a tabindex="0" pStyleClass="@next" enterClass="hidden" enterActiveClass="scalein" leaveToClass="hidden"
+                    leaveActiveClass="fadeout" [hideOnOutsideClick]="true">
+                    <span style="margin-left: 5px;">{{this.userFullName}}</span>
+                </a>
+                <ul
+                    class="list-none p-3 m-0 border-round shadow-2 absolute surface-overlay hidden origin-top w-full sm:w-12rem mt-2 left-0 top-auto">
+                    <li>
+                        <a pRipple
+                            class="flex p-2 border-round align-items-center hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
+                            (click)="myProfileClick()">
+                            <i class="pi pi-user mr-3"></i>
+                            <span class="flex flex-column">
+                                <span class="font-semibold">Profile</span>
+                            </span>
+                        </a>
+                        <a pRipple
+                            class="flex p-2 border-round align-items-center hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
+                            (click)="logout()">
+                            <i class="pi pi-power-off mr-3"></i>
+                            <span class="flex flex-column">
+                                <span class="font-semibold">Logout</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+        </ul>
+    </div>
+</div>

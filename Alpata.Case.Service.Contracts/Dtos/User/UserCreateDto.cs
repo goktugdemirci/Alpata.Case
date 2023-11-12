@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alpata.Case.Service.Contracts.Dtos.User
 {
-    public class UserCreateDto:EntityDto
+    public class UserCreateDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

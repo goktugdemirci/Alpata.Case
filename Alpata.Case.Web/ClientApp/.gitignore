@@ -1,13 +1,30 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+node_modules
+node_modules
+
+
+build
+dist
+node_modules
+.DS_Store
+.idea
+sassdoc
+
+src/assets/theme/*/*.css
+src/assets/layout/css/*.css
+src/assets/sass/theme/designer
+src/assets/sass/theme/_vendor_extensions
 
 # compiled output
 /dist
-/dist-server
 /tmp
 /out-tsc
 
 # dependencies
 /node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
 
 # IDEs and editors
 /.idea
@@ -26,6 +43,7 @@
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -38,3 +56,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Compiled files
+theme.css
+layout.css
+src/assets/demo/styles/badges.css
+src/assets/demo/styles/code.css
+src/assets/layout/styles/layout/preloading.css
+src/assets/layout/styles/theme/designer

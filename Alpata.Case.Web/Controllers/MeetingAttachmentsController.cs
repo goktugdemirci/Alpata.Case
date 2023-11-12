@@ -2,6 +2,7 @@
 using Alpata.Case.Service.Contracts.Dtos.Meeting;
 using Alpata.Case.Service.Contracts.Dtos.MeetingAttachment;
 using Alpata.Case.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace Alpata.Case.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MeetingAttachmentsController : ControllerBase
     {
         private readonly IMeetingAttachmentService _meetingAttachmentService;
@@ -28,7 +30,7 @@ namespace Alpata.Case.Web.Controllers
         {
             return _meetingAttachmentService.GetByMeetingIdAsync(meetingId);
         }
-        [HttpPost]
+        [HttpPost("Upload")]
         public Task UploadAsync()
         {
             return _meetingAttachmentService.UploadAsync(Request.Form);

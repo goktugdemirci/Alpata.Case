@@ -20,7 +20,7 @@ namespace Alpata.Case.Infrastructure.Context
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<MeetingAttachment> MeetingAttachments { get; set; }
 
-        protected   void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             _ = modelBuilder.UseEncryption(_encryptionProvider);

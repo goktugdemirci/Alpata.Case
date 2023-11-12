@@ -1,0 +1,29 @@
+<div class="flex h-screen">
+    <div class="w-full lg:w-4 h-full text-center px-6 py-6 flex flex-column justify-content-between">
+
+        <form name="form" #f="ngForm" novalidate>
+            <div class="flex flex-column align-items-center gap-4">
+
+                <div class="mb-3">
+                    <h2>Login to your account</h2>
+                    <p>Don't Have Account? <a class="text-primary hover:underline cursor-pointer font-medium" [routerLink]="['/auth/register']">Click
+                            here</a> to create.</p>
+                </div>
+                <input name="email" #email="ngModel" pInputText id="email" placeholder="Email" class="w-20rem"
+                    [(ngModel)]="this.model.email" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+                <div *ngIf="email.invalid  && f.submitted" class="invalid-feedback">
+                    <span *ngIf="email.errors">Email is required</span>
+                </div>
+                <p-password name="password" #password="ngModel" id="password" placeholder="Password" [feedback]="true"
+                    inputStyleClass="w-20rem" [(ngModel)]="this.model.password"
+                    [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required></p-password>
+                <div *ngIf="password.invalid && f.submitted" class="invalid-feedback">
+                    <span *ngIf="password.errors">Password is required</span>
+                </div>
+                <button pButton label="CONTINUE" type="button" class="w-20rem" (click)="authenticate()"
+                    [disabled]="!f.form.valid||buttonDisabled"><p-progressSpinner *ngIf="buttonDisabled"
+                        [style]="{width: '20px', height: '20px'}"></p-progressSpinner></button>
+            </div>
+        </form>
+</div>

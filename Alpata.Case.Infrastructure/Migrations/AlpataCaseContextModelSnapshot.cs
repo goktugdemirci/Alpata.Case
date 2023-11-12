@@ -43,7 +43,7 @@ namespace Alpata.Case.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Meetings");
+                    b.ToTable("Meetings", (string)null);
                 });
 
             modelBuilder.Entity("Alpata.Case.Domain.Models.MeetingAttachment", b =>
@@ -67,7 +67,7 @@ namespace Alpata.Case.Infrastructure.Migrations
 
                     b.HasIndex("MeetingId");
 
-                    b.ToTable("MeetingAttachments");
+                    b.ToTable("MeetingAttachments", (string)null);
                 });
 
             modelBuilder.Entity("Alpata.Case.Domain.Models.User", b =>
@@ -101,7 +101,7 @@ namespace Alpata.Case.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Alpata.Case.Domain.Models.MeetingAttachment", b =>

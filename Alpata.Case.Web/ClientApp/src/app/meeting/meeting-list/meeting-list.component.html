@@ -1,0 +1,67 @@
+<div class="card">
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="openNew()"></button>
+        </ng-template>
+    </p-toolbar>
+    <p-progressBar mode="indeterminate" *ngIf="progressVisible" [style]="{'height': '6px'}"></p-progressBar>
+    <p-table [value]="meetings" #dt1 dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="['name','explanation']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clearFilter(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" [(ngModel)]="searchText"
+                        (input)="dt1.filterGlobal(this.searchText, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="meetingName" style="min-width: 10rem">
+                    Meeting Name<p-sortIcon field="meetingName"></p-sortIcon>
+                    <p-columnFilter type="text" field="productNumber" display="menu"></p-columnFilter>
+                </th>
+                <th pSortableColumn="startTime" style="min-width: 10rem">
+                    Starting Time<p-sortIcon field="startTime"></p-sortIcon>
+                    <p-columnFilter type="text" field="startTime" display="menu"></p-columnFilter>
+                </th>
+                <th pSortableColumn="endTime" style="min-width: 10rem">Ending Time<p-sortIcon
+                        field="endTime"></p-sortIcon>
+                    <p-columnFilter type="text" field="endTime" display="menu"></p-columnFilter>
+                </th>
+                <th pSortableColumn="explanation" style="min-width: 5rem">Explanation<p-sortIcon
+                        field="explanation"></p-sortIcon>
+                    <p-columnFilter type="text" field="explanation" display="menu"></p-columnFilter>
+                </th>
+                <th style="min-width: 10rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.startTime|date:'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{item.endTime|date:'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{item.explanation}}</td>
+                <td>
+                    <span class="p-buttonset">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary"
+                            (click)="editMeeting(item)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                            (click)="confirm($event,item)"></button>
+                    </span>
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<app-meeting-create *ngIf="newMeetingDialogVisible" [newMeetingDialogVisible]="newMeetingDialogVisible"
+    (onDialogClose)="newMeetingDialogVisible = false" (onSave)="refresh($event)"
+    [model]="this.meeting"></app-meeting-create>
+    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
