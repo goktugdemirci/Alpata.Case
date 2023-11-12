@@ -33,6 +33,7 @@ namespace Alpata.Case.Web.Controllers
             return _userService.GetByIdAsync(id);
         }
         [HttpPost]
+        [AllowAnonymous]
         public Task<UserDto> CreateAsync(UserCreateDto userCreateDto)
         {
             return _userService.AddAsync(userCreateDto);
@@ -49,16 +50,19 @@ namespace Alpata.Case.Web.Controllers
             return _userService.DeleteAsync(id);
         }
         [HttpGet("{email}/IsUniqueEmail")]
+        [AllowAnonymous]
         public Task IsUniqueEmail(string email)
         {
             return _userService.IsEmailUniqueAsync(email);
         }
         [HttpGet("{phoneNumber}/IsUniquePhoneNumber")]
+        [AllowAnonymous]
         public Task IsUniquePhoneNumber(string phoneNumber)
         {
             return _userService.IsPhoneNumberUniqueAsync(phoneNumber);
         }
         [HttpPost("ProfilePhoto/Upload")]
+        [AllowAnonymous]
         public Task UploadProfilePhoto()
         {
             return _userService.UploadProfilePhoto(Request.Form);
